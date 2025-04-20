@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CareSync - Transfer Request</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>CareSync - Patient Transfer Request</h2>
+    <form action="/submit" method="POST">
+        <input type="text" name="patient_name" placeholder="Patient Name" required><br>
+        <input type="text" name="clinic" placeholder="Referring Clinic/Hospital" required><br>
+        <textarea name="reason" placeholder="Reason for Transfer" required></textarea><br>
+        <button type="submit">Submit Request</button>
+    </form>
+</body>
+</html>

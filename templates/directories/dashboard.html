@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - CareSync</title>
+</head>
+<body>
+    <h2>Patient Transfers</h2>
+    <a href="/logout">Logout</a>
+    <table border="1">
+        <tr>
+            <th>Patient</th>
+            <th>From</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for t in transfers %}
+        <tr>
+            <form method="POST">
+                <td>{{ t['patient_name'] }}</td>
+                <td>{{ t['clinic'] }}</td>
+                <td>{{ t['reason'] }}</td>
+                <td>
+                    <select name="status">
+                        <option value="Pending" {% if t['status'] == 'Pending' %}selected{% endif %}>Pending</option>
+                        <option value="Accepted" {% if t['status'] == 'Accepted' %}selected{% endif %}>Accepted</option>
+                        <option value="In Transit" {% if t['status'] == 'In Transit' %}selected{% endif %}>In Transit</option>
+                        <option value="Completed" {% if t['status'] == 'Completed' %}selected{% endif %}>Completed</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="hidden" name="id" value="{{ t['_id'] }}">
+                    <button type="submit">Update</button>
+                </td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
